@@ -2,13 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
       xmlns:xlmns="http://www.w3.org/1999/xhtml">
 
-<nav><div class="container"><a href="https://kea.dk/" style="font-weight: bold;
-    font-size: 1.2em;">KEA</a>
-    <a href="/">Students</a>
-    <a href="/Courses">Courses</a>
-    <a href="/Enrollments">Enrollments</a>
-</div>
-</nav>
+
 
 <head>
 
@@ -19,6 +13,17 @@
 
 </head>
 <body>
+<div class="container-fluid">
+
+<nav>
+<div class="container">
+        <a href="https://kea.dk/" id="logo">KEA</a>
+        <a href="/">Students</a>
+        <a href="/Courses">Courses</a>
+        <a href="/Enrollments">Enrollments</a>
+</div>
+</nav>
+</div>
 <div class="container">
 <table>
 
@@ -36,7 +41,7 @@
     <tbody>
     <h1>Students</h1>
     <p>Enrolled Students at KEA</p>
-    <button type="button" class="btn">Create</button>
+    <a href="/create" type="button" class="btn btn-create">Create</a>
     <p></p>
 
     <tr th:each="student: ${students}">
@@ -47,7 +52,7 @@
         <td th:text="${student.cpr}"></td>
 
 
-        <td><button type="button" class=" btn ">Details</button>
+        <td><a th:href="${'/details?id='+student.studentId}" type="button" class="btn btn-details">Details</a>
             <button type="button" class="btn btn-ed">Edit</button> <button type="button" class="btn btn-del">Delete</button></td>
 
     </tr>
@@ -55,7 +60,8 @@
     </tbody>
 
 </table>
+    <footer class="footer"><p>Andreas Jepsen Nielsen</p></footer>
 </div>
 </body>
-<footer class="footer"><p>Andreas Jepsen Nielsen</p></footer>
+
 </html>

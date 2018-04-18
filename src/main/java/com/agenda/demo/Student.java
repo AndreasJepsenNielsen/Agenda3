@@ -1,13 +1,21 @@
 package com.agenda.demo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Student {
     private int studentId;
     private String firstName;
     private String lastName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enrollmentDate;
     private String cpr;
+
+    public Student()
+    {
+
+    }
 
     public Student(int studentId, String firstName, String lastName, Date enrollmentDate, String cpr) {
         this.studentId = studentId;
