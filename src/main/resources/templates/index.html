@@ -53,8 +53,9 @@
 
 
         <td><a th:href="${'/details?id='+student.studentId}" type="button" class="btn btn-details">Details</a>
-            <button type="button" class="btn btn-ed">Edit</button> <button type="button" class="btn btn-del">Delete</button></td>
 
+        <a th:href="${'/update?id='+student.studentId}" type="button" class="btn btn-ed">Edit</a>
+        <a th:href="${'/delete?id='+student.studentId}" type="button" class="btn btn-del">Delete</a>
     </tr>
 
     </tbody>

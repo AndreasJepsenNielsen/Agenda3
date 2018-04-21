@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+
+<nav><div class="container"><a href="https://kea.dk/" style="font-weight: bold;
+    font-size: 1.2em;">KEA</a>
+    <a href="/">Students</a>
+    <a href="/Courses">Courses</a>
+    <a href="/Enrollments">Enrollments</a>
+</div>
+</nav>
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"
+          title="Default Styles" media="screen">
+    <title>updateC</title>
+</head>
+<div class="container">
+    <body>
+    <form method="Post" th:action="@{/updateC}">
+        <p>Input Course Title</p>
+        <input   type="text"   th:field="${Course.Title}"/>
+        <p>Input Course Start Date</p>
+        <input   type="date"   th:field="${Course.Start_Date}"/>
+        <p>Input ECTS</p>
+        <input   type="text"   th:field="${Course.ECTS}"/>
+        <input   type="submit"   value="Send"   />
+    </form>
+    </body>
+</div>
+</html>

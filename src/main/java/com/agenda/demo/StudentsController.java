@@ -1,8 +1,7 @@
 package com.agenda.demo;
 
-import org.apache.tomcat.jni.Time;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sun.util.calendar.Gregorian;
@@ -21,10 +20,10 @@ public class StudentsController {
 
     public static void fillStudents()
     {
-        Student student = new Student(1,"Lukas","Nielsen", new Date(),"20-10-98");
-        Student student1 = new Student(2,"Andreas","Nielsen", new Date(),"12-11-95");
-        Student student2 = new Student(3,"Matias","Gramkow", new Date(),"23-12-94");
-        Student student3 = new Student(4,"Kasper","Lovin", new Date(),"13-11-88");
+        Student student = new Student(0,"Lukas","Nielsen", new Date(),"20-10-98");
+        Student student1 = new Student(1,"Andreas","Nielsen", new Date(),"12-11-95");
+        Student student2 = new Student(2,"Matias","Gramkow", new Date(),"23-12-94");
+        Student student3 = new Student(3,"Kasper","Lovin", new Date(),"13-11-88");
 
         students.add(student);
         students.add(student1);
@@ -45,9 +44,12 @@ public class StudentsController {
 
     @PostMapping("/create")
     public String create(@ModelAttribute Student student) {
-        int index = (students.size() + 1);
-        student.setStudentId(index);
-        students.add(student);
+
+            int index = (students.size());
+
+            student.setStudentId(index);
+            students.add(student);
+
         return "redirect:/";
     }
 
@@ -57,4 +59,34 @@ public class StudentsController {
         model.addAttribute("student",students.get(id));
         return "details";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id, Model model) {
+        model.addAttribute("student",students.get(id));
+        return "delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute Student student){
+        students.remove(student.getStudentId());
+        return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") int id, Model model) {
+
+        model.addAttribute("student", students.get(id));
+
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute Student student) {
+    students.set(student.getStudentId(),student);
+    return "redirect:/";
+    }
+
+
+
+
 }

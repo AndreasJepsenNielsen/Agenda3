@@ -36,16 +36,17 @@
     <tbody>
     <h1>Courses</h1>
     <p>Courses at KEA</p>
-    <button type="button" class="btn">Create new Course</button>
+    <a href="/createC" type="button" class="btn btn-create">Create New Course</a>
     <p></p>
 
     <tr th:each="courses: ${courses}">
         <td th:text="${courses.Id}"></td>
         <td th:text="${courses.Title}"></td>
         <td th:text="${courses.Start_Date}"></td>
-        <td th:text="${courses.ETCS}"></td>
-        <td><button type="button" class=" btn ">Details</button>
-            <button type="button" class="btn btn-ed">Edit</button> <button type="button" class="btn btn-del">Delete</button></td>
+        <td th:text="${courses.ECTS}"></td>
+        <td><a th:href="${'/detailsC?id='+courses.Id}" type="button" class="btn btn-details">Details</a>
+            <a th:href="${'/updateC?id='+courses.Id}" type="button" class="btn btn-ed">Edit</a>
+            <a th:href="${'/deleteC?id='+courses.Id}" type="button" class="btn btn-del">Delete</a></td>
 
     </tr>
 
