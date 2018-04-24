@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+
+<nav><div class="container"><a href="https://kea.dk/" style="font-weight: bold;
+    font-size: 1.2em;">KEA</a>
+    <a href="/">Students</a>
+    <a href="/Courses">Courses</a>
+    <a href="/Enrollments">Enrollments</a>
+</div>
+</nav>
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"
+          title="Default Styles" media="screen">
+    <title>details</title>
+</head>
+<div class="container">
+    <body>
+    <h2>Are you sure you want to delete</h2>
+    <form action="#" th:action="@{/delete}" method="post" >
+        <p th:text="${student.firstName + ' ' +  student.lastName}"></p>
+        <input type="hidden"  th:field="${student.studentId}"  />
+        <input type="submit" value="YES" class="btn btn-del w"/>
+        <a href="/" class="btn btn-create w" >NO</a>
+    </form>
+    </body>
+</div>
+</html>

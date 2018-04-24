@@ -1,18 +1,25 @@
 package com.agenda.demo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Course {
     private int Id;
     private String Title;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date Start_Date;
-    private int ETCS;
+    private int ECTS;
+
+    public Course() {
+
+    }
 
     public Course(int id, String title, Date start_Date, int ETCS) {
         Id = id;
         Title = title;
         Start_Date = start_Date;
-        this.ETCS = ETCS;
+        this.ECTS = ETCS;
     }
 
     public int getId() {
@@ -40,11 +47,11 @@ public class Course {
         Start_Date = start_Date;
     }
 
-    public int getETCS() {
-        return ETCS;
+    public int getECTS() {
+        return ECTS;
     }
 
-    public void setETCS(int ETCS) {
-        this.ETCS = ETCS;
+    public void setECTS(int ECTS) {
+        this.ECTS = ECTS;
     }
 }
