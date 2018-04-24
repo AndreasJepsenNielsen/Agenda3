@@ -21,10 +21,10 @@ public class StudentsController {
 
     public static void fillStudents()
     {
-        Student student = new Student(1,"Lukas","Nielsen", new Date(),"20-10-98");
-        Student student1 = new Student(2,"Andreas","Nielsen", new Date(),"12-11-95");
-        Student student2 = new Student(3,"Matias","Gramkow", new Date(),"23-12-94");
-        Student student3 = new Student(4,"Kasper","Lovin", new Date(),"13-11-88");
+        Student student = new Student(0,"Lukas","Nielsen", new Date(),"20-10-98");
+        Student student1 = new Student(1,"Andreas","Nielsen", new Date(),"12-11-95");
+        Student student2 = new Student(2,"Matias","Gramkow", new Date(),"23-12-94");
+        Student student3 = new Student(3,"Kasper","Lovin", new Date(),"13-11-88");
 
         students.add(student);
         students.add(student1);
