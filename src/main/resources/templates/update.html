@@ -19,6 +19,7 @@
 <div class="container">
     <body>
     <form method="Post" th:action="@{/update}">
+        <input type="hidden" th:field="${student.studentId}"><br>
         <p>Input First Name</p>
 
         <input   type="text" value={student.firstName}  th:field="${student.firstName}"/>

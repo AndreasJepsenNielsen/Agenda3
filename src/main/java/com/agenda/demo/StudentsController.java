@@ -1,5 +1,8 @@
 package com.agenda.demo;
 
+import com.agenda.demo.Interfaces.IStudentRepository;
+import com.agenda.demo.Repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -16,24 +19,20 @@ public class StudentsController {
 
 
 
-    static ArrayList<Student> students = new ArrayList<>();
+    @Autowired
+    private IStudentRepository repository = new StudentRepository();
 
-    public static void fillStudents()
-    {
-        Student student = new Student(0,"Lukas","Nielsen", new Date(),"20-10-98");
-        Student student1 = new Student(1,"Andreas","Nielsen", new Date(),"12-11-95");
-        Student student2 = new Student(2,"Matias","Gramkow", new Date(),"23-12-94");
-        Student student3 = new Student(3,"Kasper","Lovin", new Date(),"13-11-88");
-
-        students.add(student);
-        students.add(student1);
-        students.add(student2);
-        students.add(student3);
-    }
-    @RequestMapping("/")
+    @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("students",students);
+        model.addAttribute("students",repository.get());
         return "index";
+    }
+
+    @GetMapping("/details")
+    public String details(@RequestParam("id") int id, Model model)
+    {
+        model.addAttribute("student",repository.get(id));
+        return "details";
     }
 
     @GetMapping("/create")
@@ -42,47 +41,39 @@ public class StudentsController {
         return "create";
     }
 
-    @PostMapping("/create")
+    @PostMapping(value = "/create")
     public String create(@ModelAttribute Student student) {
-
-            int index = (students.size());
-
-            student.setStudentId(index);
-            students.add(student);
+        System.out.println(student);
+        repository.create(student);
 
         return "redirect:/";
     }
 
-    @GetMapping("/details")
-    public String details(@RequestParam("id") int id, Model model)
-    {
-        model.addAttribute("student",students.get(id));
-        return "details";
-    }
+
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id, Model model) {
-        model.addAttribute("student",students.get(id));
+        model.addAttribute("student",repository.get(id));
         return "delete";
     }
 
     @PostMapping("/delete")
     public String delete(@ModelAttribute Student student){
-        students.remove(student.getStudentId());
+       repository.delete(student);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
 
-        model.addAttribute("student", students.get(id));
+        model.addAttribute("student", repository.get(id));
 
         return "update";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Student student) {
-    students.set(student.getStudentId(),student);
+    repository.update(student);
     return "redirect:/";
     }
 

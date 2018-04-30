@@ -2,22 +2,25 @@ package com.agenda.demo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Student {
+
     private int studentId;
     private String firstName;
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date enrollmentDate;
-    private String cpr;
+    private java.util.Date enrollmentDate;
+    private int cpr;
 
     public Student()
     {
 
     }
 
-    public Student(int studentId, String firstName, String lastName, Date enrollmentDate, String cpr) {
+    public Student(int studentId, String firstName, String lastName, java.util.Date enrollmentDate, int cpr) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,19 +52,26 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Date getEnrollmentDate() {
+    public java.util.Date getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(Date enrollmentDate) {
+    public void setEnrollmentDate(java.util.Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
 
-    public String getCpr() {
+    public int getCpr() {
         return cpr;
     }
 
-    public void setCpr(String cpr) {
+    public void setCpr(int cpr) {
         this.cpr = cpr;
+    }
+
+    public String getDateString()
+    {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        return formatter.format(this.enrollmentDate);
     }
 }

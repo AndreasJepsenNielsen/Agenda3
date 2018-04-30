@@ -16,19 +16,22 @@
           title="Default Styles" media="screen">
     <title>create</title>
 </head>
-<div class="container">
 <body>
-<form method="Post" th:action="@{/create}">
+<div class="container">
+
+<form method="POST" th:action="@{/create}">
+    <input type="hidden" th:field=" ${student.studentId}"><br>
     <p>Input First Name</p>
     <input   type="text"   th:field="${student.firstName}"   />
     <p>Input Last Name</p>
     <input   type="text"   th:field="${student.lastName}"/>
-    <p>Date of Birth</p>
+    <p>Enrollment Date</p>
     <input   type="date"   th:field="${student.enrollmentDate}"/>
     <p>Cpr</p>
     <input   type="text"   th:field="${student.cpr}"/>
+
     <input   type="submit"   value="Send"   />
 </form>
-</body>
 </div>
+</body>
 </html>
